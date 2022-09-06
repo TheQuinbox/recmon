@@ -3,7 +3,7 @@ local inspect = hs.inspect
 local recmon = {}
 
 recmon.name = "Resource Monitor"
-recmon.version = "1.0"
+recmon.version = "1.1"
 recmon.author = "Quin Marilyn <quin.marilyn05@gmail.com>"
 recmon.license = "MIT"
 
