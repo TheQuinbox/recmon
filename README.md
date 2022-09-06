@@ -1,6 +1,6 @@
 # Recmon
 
-Recmon is a [Hammerspoon](http://hammerspoon.org) spoon that allows you to obtain information about your CPU load, drives spaces, etc at the press of a button.
+Recmon is a [Hammerspoon](http://hammerspoon.org) spoon that allows you to obtain information about your CPU load, drive usage, etc at the press of a button.
 
 ## Installation
 
@@ -27,10 +27,10 @@ Save the file, return to the Hammerspoon menu extra but this time click the relo
 
 To use each feature, simply press ctrl+shift+the number next to it.
 
-1. Average CPU load, and how its distributed.
-2. RAM usage (not working yet, see todo).
+1. Speak average CPU load, and how its distributed.
+2. Speak RAM usage (not working yet, see todo).
 3. Speak storage information about all connected drives.
-4. Speaks OS version.
+4. Speak OS version.
 5. Speak system uptime.
 6. Speak battery percentage, state, and time remaining.
 
