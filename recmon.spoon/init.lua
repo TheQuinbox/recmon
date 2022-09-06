@@ -66,7 +66,7 @@ local function diskUsage()
 	local disks = hs.host.volumeInformation()
 	local res = {}
 	for k, v in pairs(disks) do
-		local str = v["NSURLVolumeLocalizedNameKey"] .. "(" .. v["NSURLVolumeLocalizedFormatDescriptionKey"] .. "): " .. bytesToHuman(v["NSURLVolumeTotalCapacityKey"] - v["NSURLVolumeAvailableCapacityKey"]) .. " of " .. bytesToHuman(v["NSURLVolumeTotalCapacityKey"] ) .. " used (" .. percent(v["NSURLVolumeTotalCapacityKey"] - v["NSURLVolumeAvailableCapacityKey"], v["NSURLVolumeAvailableCapacityKey"]) .. "%). "
+		local str = v["NSURLVolumeLocalizedNameKey"] .. " (" .. v["NSURLVolumeLocalizedFormatDescriptionKey"] .. "): " .. bytesToHuman(v["NSURLVolumeTotalCapacityKey"] - v["NSURLVolumeAvailableCapacityKey"]) .. " of " .. bytesToHuman(v["NSURLVolumeTotalCapacityKey"] ) .. " used (" .. percent(v["NSURLVolumeTotalCapacityKey"] - v["NSURLVolumeAvailableCapacityKey"], v["NSURLVolumeTotalCapacityKey"]) .. "%. "
 		table.insert(res, str)
 	end
 	res = table.concat(res)
