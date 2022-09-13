@@ -113,7 +113,7 @@ local function audioDevices()
 		res = res .. " Muted"
 	end
 	local outputDevice = hs.audiodevice.defaultOutputDevice()
-	res = res .. ". Output: " .. outputDevice:name() .. " (" .. math.floor(outputDevice:volume()) .. "%)."
+	res = res .. ". Output: " .. outputDevice:name() .. " (volume " .. math.floor(outputDevice:volume()) .. "%)."
 	speak(res)
 end
 
