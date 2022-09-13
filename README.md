@@ -33,6 +33,7 @@ To use each feature, simply press ctrl+shift+the number next to it.
 4. Speak OS version.
 5. Speak system uptime.
 6. Speak battery percentage, state, and time remaining.
+7. Speak information about your default input/output devices, their volume, and in the case of your input device, if its muted or not.
 
 ## Todo
 

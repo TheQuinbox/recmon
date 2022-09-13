@@ -3,7 +3,7 @@ local inspect = hs.inspect
 local recmon = {}
 
 recmon.name = "Resource Monitor"
-recmon.version = "1.1"
+recmon.version = "1.2"
 recmon.author = "Quin Marilyn <quin.marilyn05@gmail.com>"
 recmon.license = "MIT"
 
@@ -106,12 +106,24 @@ local function batteryPercentage()
 	speak(res)
 end
 
+local function audioDevices()
+	local inputDevice = hs.audiodevice.defaultInputDevice()
+	local res = "Input: " .. inputDevice:name() .. " (volume " .. math.floor(inputDevice:volume()) .. "%)"
+	if inputDevice:muted() then
+		res = res .. " Muted"
+	end
+	local outputDevice = hs.audiodevice.defaultOutputDevice()
+	res = res .. ". Output: " .. outputDevice:name() .. " (" .. math.floor(outputDevice:volume()) .. "%)."
+	speak(res)
+end
+
 local cpuHotkey = hs.hotkey.new("ctrl-shift", "1", cpuUsage)
 local ramHotkey = hs.hotkey.new("ctrl-shift", "2", ramUsage)
 local diskHotkey = hs.hotkey.new("ctrl-shift", "3", diskUsage)
 local osHotkey = hs.hotkey.new("ctrl-shift", "4", osVersion)
 local uptimeHotkey = hs.hotkey.new("ctrl-shift", "5", uptime)
 local batteryHotkey = hs.hotkey.new("ctrl-shift", "6", batteryPercentage)
+local audioDeviceHotkey = hs.hotkey.new("ctrl-shift", "7", audioDevices)
 
 function recmon.init()
 end
@@ -123,6 +135,7 @@ function recmon.start()
 	osHotkey:enable()
 	uptimeHotkey:enable()
 	batteryHotkey:enable()
+	audioDeviceHotkey:enable()
 end
 
 function recmon.stop()
@@ -132,6 +145,7 @@ function recmon.stop()
 	osHotkey:disable()
 	uptimeHotkey:disable()
 	batteryHotkey:disable()
+	audioDeviceHotkey:disable()
 end
 
 return recmon
