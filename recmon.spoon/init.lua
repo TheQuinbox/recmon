@@ -12,7 +12,7 @@ tell application "voiceover" to output "MESSAGE"
 ]]
 
 local function speak(text)
-	local script = speakScript:gsub("MESSAGE", function ()
+	local script = speakScript:gsub("MESSAGE", function()
 		return text
 	end)
 	success, _, output = hs.osascript.applescript(script)
@@ -27,7 +27,7 @@ local function round(num, numDecimalPlaces)
 end
 
 local function bytesToHuman(size)
-	local units = {"B", "KB", "MB", "GB", "TB"}
+	local units = { "B", "KB", "MB", "GB", "TB" }
 	local finalUnit = ""
 	for _, unit in ipairs(units) do
 		if size < 1024.0 then
@@ -56,17 +56,36 @@ end
 
 local function cpuUsage()
 	local usage = hs.host.cpuUsage()
-	speak("Average CPU load " .. round(usage.overall.active) .. "%. User: " .. round(usage.overall.user) .. "%. System: " .. round(usage.overall.system) .. "%")
+	speak(
+		"Average CPU load "
+			.. round(usage.overall.active)
+			.. "%. User: "
+			.. round(usage.overall.user)
+			.. "%. System: "
+			.. round(usage.overall.system)
+			.. "%"
+	)
 end
 
-local function ramUsage()
-end
+local function ramUsage() end
 
 local function diskUsage()
 	local disks = hs.host.volumeInformation()
 	local res = {}
 	for k, v in pairs(disks) do
-		local str = v["NSURLVolumeLocalizedNameKey"] .. " (" .. v["NSURLVolumeLocalizedFormatDescriptionKey"] .. "): " .. bytesToHuman(v["NSURLVolumeTotalCapacityKey"] - v["NSURLVolumeAvailableCapacityKey"]) .. " of " .. bytesToHuman(v["NSURLVolumeTotalCapacityKey"] ) .. " used (" .. percent(v["NSURLVolumeTotalCapacityKey"] - v["NSURLVolumeAvailableCapacityKey"], v["NSURLVolumeTotalCapacityKey"]) .. "%. "
+		local str = v["NSURLVolumeLocalizedNameKey"]
+			.. " ("
+			.. v["NSURLVolumeLocalizedFormatDescriptionKey"]
+			.. "): "
+			.. bytesToHuman(v["NSURLVolumeTotalCapacityKey"] - v["NSURLVolumeAvailableCapacityKey"])
+			.. " of "
+			.. bytesToHuman(v["NSURLVolumeTotalCapacityKey"])
+			.. " used ("
+			.. percent(
+				v["NSURLVolumeTotalCapacityKey"] - v["NSURLVolumeAvailableCapacityKey"],
+				v["NSURLVolumeTotalCapacityKey"]
+			)
+			.. "%. "
 		table.insert(res, str)
 	end
 	res = table.concat(res)
@@ -125,8 +144,7 @@ local uptimeHotkey = hs.hotkey.new("ctrl-shift", "5", uptime)
 local batteryHotkey = hs.hotkey.new("ctrl-shift", "6", batteryPercentage)
 local audioDeviceHotkey = hs.hotkey.new("ctrl-shift", "7", audioDevices)
 
-function recmon.init()
-end
+function recmon.init() end
 
 function recmon.start()
 	cpuHotkey:enable()
