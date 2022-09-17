@@ -7,17 +7,15 @@ recmon.version = "1.2"
 recmon.author = "Quin Marilyn <quin.marilyn05@gmail.com>"
 recmon.license = "MIT"
 
-local speakScript = [[
-tell application "voiceover" to output "MESSAGE"
-]]
+local synth = hs.speech.new()
 
 local function speak(text)
-    local script = speakScript:gsub("MESSAGE", function()
-        return text
-    end)
-    success, _, output = hs.osascript.applescript(script)
-    if not success then
-        print(inspect(output))
+    if hs.application.get("VoiceOver") ~= nil then
+        hs.osascript.applescript(
+            "tell application \"VoiceOver\" to output \"" .. text .. "\""
+        )
+    else
+        synth:speak(text)
     end
 end
 
@@ -143,7 +141,7 @@ local function audioDevices()
     res = res
         .. ". Output: "
         .. outputDevice:name()
-        .. " (volume "
+        .. " ("
         .. math.floor(outputDevice:volume())
         .. "%)."
     speak(res)
