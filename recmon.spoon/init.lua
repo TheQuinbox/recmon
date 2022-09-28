@@ -148,14 +148,18 @@ local function audioDevices()
 end
 
 local function pasteBoard()
-	local res = hs.pasteboard.getContents()
-	if #res==0 then
-		speak("The clipboard is empty.")
-	elseif #res >= 2048 then
-		speak("The clipboard contains a large portion of text. It is " .. #res .. " characters long.")
-	else
-		speak("Clipboard contains: " .. res)
-	end
+    local res = hs.pasteboard.getContents()
+    if #res == 0 then
+        speak("The clipboard is empty.")
+    elseif #res >= 2048 then
+        speak(
+            "The clipboard contains a large portion of text. It is "
+                .. #res
+                .. " characters long."
+        )
+    else
+        speak("Clipboard contains: " .. res)
+    end
 end
 
 local cpuHotkey = hs.hotkey.new("ctrl-shift", "1", cpuUsage)
@@ -177,7 +181,7 @@ function recmon.start()
     uptimeHotkey:enable()
     batteryHotkey:enable()
     audioDeviceHotkey:enable()
-	pasteBoardHotkey:enable()
+    pasteBoardHotkey:enable()
 end
 
 function recmon.stop()
@@ -188,7 +192,7 @@ function recmon.stop()
     uptimeHotkey:disable()
     batteryHotkey:disable()
     audioDeviceHotkey:disable()
-	pasteBoardHotkey:disable()
+    pasteBoardHotkey:disable()
 end
 
 return recmon
