@@ -147,7 +147,7 @@ local function audioDevices()
     speak(res)
 end
 
-local function pasteBoard()
+local function pasteboard()
     local res = hs.pasteboard.getContents()
     if #res == 0 then
         speak("The clipboard is empty.")
@@ -169,7 +169,7 @@ local osHotkey = hs.hotkey.new("ctrl-shift", "4", osVersion)
 local uptimeHotkey = hs.hotkey.new("ctrl-shift", "5", uptime)
 local batteryHotkey = hs.hotkey.new("ctrl-shift", "6", batteryPercentage)
 local audioDeviceHotkey = hs.hotkey.new("ctrl-shift", "7", audioDevices)
-local pasteBoardHotkey = hs.hotkey.new("ctrl-shift", "8", pasteBoard)
+local pasteboardHotkey = hs.hotkey.new("ctrl-shift", "8", pasteboard)
 
 function recmon.init() end
 
@@ -181,7 +181,7 @@ function recmon.start()
     uptimeHotkey:enable()
     batteryHotkey:enable()
     audioDeviceHotkey:enable()
-    pasteBoardHotkey:enable()
+    pasteboardHotkey:enable()
 end
 
 function recmon.stop()
@@ -192,7 +192,7 @@ function recmon.stop()
     uptimeHotkey:disable()
     batteryHotkey:disable()
     audioDeviceHotkey:disable()
-    pasteBoardHotkey:disable()
+    pasteboardHotkey:disable()
 end
 
 return recmon
