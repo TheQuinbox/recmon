@@ -149,7 +149,7 @@ end
 
 local function pasteboard()
     local res = hs.pasteboard.getContents()
-    if #res == 0 then
+    if res == nil or #res == 0 then
         speak("The clipboard is empty.")
     elseif #res >= 2048 then
         speak(
