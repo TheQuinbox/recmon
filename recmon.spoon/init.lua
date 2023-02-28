@@ -12,7 +12,7 @@ local synth = hs.speech.new()
 local function speak(text)
     if hs.application.get("VoiceOver") ~= nil then
         hs.osascript.applescript(
-            "tell application \"VoiceOver\" to output \"" .. text .. "\""
+            "tell application \"VoiceOver\" to output \"" .. text:gsub("\"", "\\\"") .. "\""
         )
     else
         synth:speak(text)
